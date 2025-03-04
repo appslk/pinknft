@@ -1,0 +1,45 @@
+{
+  "name": "Optimus BadAssBots #1",
+  "symbol": "YC",
+  "description": "Optimus BadAssBots",
+  "image": "1.png",
+  "external_url": "https://sphiriadigital.com",
+  "edition": 1,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mars"
+    },
+    {
+      "trait_type": "Skin",
+      "value": "Base"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Torn Cotton Tshirt"
+    },
+    {
+      "trait_type": "Hand",
+      "value": "Book of Ra"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Beret"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Shiba Mask"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "1.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+    
+    ],
+  }
+}
