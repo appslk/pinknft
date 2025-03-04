@@ -26,7 +26,7 @@ export default function Roadmap() {
                 <div className="timeline">
                     {phases.map((item, index) => (
                         <div key={index} className="phase">
-                            <div className={`marker ${item.color}`}></div>
+                           <div> <div className={`marker ${item.color}`}></div></div>
                             <div className="content">
                                 <h3 style={{ color: item.color }}>{item.phase}</h3>
                                 <p><span className="year">{item.year}</span> <br/> {item.description}</p>
