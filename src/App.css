@@ -27,6 +27,8 @@ body {
   background-color: #000;
   color: #fff;
   line-height: 1.6;
+  contain: content
+
 }
 
 @media screen and (max-width: 499px) {
@@ -909,7 +911,7 @@ body {
     align-items: center;
     gap: 15px;
     margin: 20px 0;
-    max-width: 600px;
+    max-width: 95%;
     padding: 15px;
     border-left: 4px solid #ff0077;
     position: relative;
@@ -919,7 +921,7 @@ body {
   .marker {
     width: 15px;
     height: 15px;
-    border-radius: 50%;
+    border-radius: 100px;
     box-shadow: 0 0 10px #ff0077;
   }
 
