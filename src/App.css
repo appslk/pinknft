@@ -8,12 +8,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
 
+.mint-wrapper {
+  position: relative;
+}
+
+.prices{
+  font-family: "Oxanium", sans-serif;
+}
+
+#blurEffect {
+  filter: blur(8px); /* Apply blur effect */
+  pointer-events: none; /* Disable interactions */
+  user-select: none; /* Prevent text selection */
+}
+
+.coming-soon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+  color: white;
+  padding: 20px 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  z-index: 100;
+  width: 100%;
+}
+
+.txtcs{
+  font-family: "Oxanium", sans-serif;
+  text-transform: uppercase;
+  width: 100%;
+  text-shadow: 0 0 10px #FFFFFF;
+}
+
 a:hover {
   color: white;
 }
 
 .mintSpans {
   font-family: "Oxanium", sans-serif;
+}
+
+.nft-name{
+  font-family: "Oxanium", sans-serif;
+  text-shadow: #ffffff9c 0px 0px 5px, #ffffff56 0px 0px 10px, #ffffff33 0px 0px 15px, #ff2d96b0 0px 0px 20px, #ff2d969d 0px 0px 30px, #ff2d9698 0px 0px 40px, #ff2d966e 0px 0px 50px, #ff2d965e 0px 0px 75px;
+}
+
+.os{
+  font-family: "Oxanium", sans-serif;
+  margin-top: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  text-shadow: 0 0 10px #ff2b72;
+  transition: 0.2s ease-in-out;
+}
+
+.os:hover{
+  text-shadow: 0 0 10px #ff8eb3;
+}
+
+.os img{
+  width: 19px;
+  height: 19px;
+  margin-top: -7px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.os img:hover {
+  transform: scale(1.1);
+}
+
+.os:active {
+  transform: scale(0.9);
+  opacity: 0.6;
+}
+
+.os img:active {
+  transform: scale(0.9);
+  opacity: 0.6;
 }
 
 :root {
@@ -27,11 +103,194 @@ body {
   background-color: #000;
   color: #fff;
   line-height: 1.6;
-  contain: content
-
 }
 
+.carousel {
+  display: flex;
+}
+
+.arrow {
+  background-color: rgba(128, 128, 128, 0);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.arrow img {
+  width: 28px;
+  height: 28px;
+  margin-top: -13px;
+  transition: 0.2s ease-in-out;
+}
+
+.arrow img:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.arrow img:active {
+  transform: scale(0.9);
+  opacity: 0.6;
+}
+
+.mint-btn2:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Cursor loading effect */
+.loading2 {
+  cursor: progress;
+}
+
+.notification {
+  position: fixed;
+  top: 40px;
+  /* Move to top */
+  right: 50px;
+  /* Align to the right */
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  font-family: "Oxanium", sans-serif;
+}
+
+/* Notification Types */
+.error {
+  background: rgba(255, 0, 0, 0.3);
+  border-left: 4px solid #ff4d4d;
+  color: #fa9393;
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+}
+
+.loading {
+  background: rgba(0, 119, 255, 0.3);
+  border-left: 4px solid #1983fd;
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  color: rgb(116, 179, 252);
+}
+
+.success {
+  background: rgba(0, 255, 127, 0.3);
+  border-left: 4px solid #00ff7f;
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  color: rgb(107, 255, 181);
+}
+
+.loading:after {
+  content: '.';
+  animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+
+  0%,
+  20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow:
+      .25em 0 0 rgba(0, 0, 0, 0),
+      .5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  40% {
+    color: rgb(151, 151, 151);
+    text-shadow:
+      .25em 0 0 rgba(0, 0, 0, 0),
+      .5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  60% {
+    text-shadow:
+      .25em 0 0 rgb(124, 124, 124),
+      .5em 0 0 rgba(0, 0, 0, 0);
+  }
+
+  80%,
+  100% {
+    text-shadow:
+      .25em 0 0 rgb(121, 121, 121),
+      .5em 0 0 rgb(121, 121, 121);
+  }
+}
+
+/* Progress Bar */
+.progress-barE {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fa9393;
+  animation: progressReduce 4s linear forwards;
+}
+
+.progress-barS {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgb(107, 255, 181);
+  animation: progressReduce 4s linear forwards;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes progressReduce {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+
+
 @media screen and (max-width: 499px) {
+  .arrow {
+    background-color: rgba(128, 128, 128, 0);
+    color: white;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0 5px;
+  }
+
+  .arrow img {
+    width: 25px;
+    height: 25px;
+    margin-top: -18px;
+    transition: 0.2s ease-in-out;
+  }
 
   .header {
     position: absolute;
@@ -766,10 +1025,14 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 40px;
-    padding-top: 40px;
+    margin-top: -7px;
   }
 
   .nft-slider2 {
+    display: none;
+  }
+
+  .nft-slider2-mob {
     display: flex;
     gap: 10px;
     overflow-x: auto;
@@ -778,10 +1041,8 @@ body {
     margin-top: 30px;
   }
 
-
   .nft-thumb2 {
-    width: 60px;
-    height: 60px;
+    width: 100px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
@@ -988,6 +1249,26 @@ body {
 }
 
 @media screen and (min-width: 500px) and (max-width: 767px) {
+  .nft-slider2-mob {
+    display: none;
+  }
+
+  .arrow {
+    background-color: rgba(128, 128, 128, 0);
+    color: white;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0 5px;
+  }
+
+  .arrow img {
+    width: 25px;
+    height: 25px;
+    margin-top: -18px;
+    transition: 0.2s ease-in-out;
+  }
 
   .header {
     position: absolute;
@@ -1722,7 +2003,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 40px;
-    padding-top: 40px;
+    margin-top: -7px;
   }
 
   .nft-slider2 {
@@ -1734,10 +2015,8 @@ body {
     margin-top: 30px;
   }
 
-
   .nft-thumb2 {
-    width: 90px;
-    height: 90px;
+    width: 100px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
@@ -1944,6 +2223,9 @@ body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
+  .nft-slider2-mob {
+    display: none;
+  }
 
   .header {
     position: absolute;
@@ -2680,7 +2962,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 40px;
-    padding-top: 40px;
+    margin-top: -7px;
   }
 
   .nft-slider2 {
@@ -2694,8 +2976,7 @@ body {
 
 
   .nft-thumb2 {
-    width: 90px;
-    height: 90px;
+    width: 120px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
@@ -2902,6 +3183,9 @@ body {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
+  .nft-slider2-mob {
+    display: none;
+  }
 
   .header {
     position: absolute;
@@ -3638,7 +3922,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 40px;
-    padding-top: 40px;
+    margin-top: -7px;
   }
 
   .nft-slider2 {
@@ -3652,8 +3936,7 @@ body {
 
 
   .nft-thumb2 {
-    width: 90px;
-    height: 90px;
+    width: 120px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
@@ -3860,6 +4143,9 @@ body {
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1919px) {
+  .nft-slider2-mob {
+    display: none;
+  }
 
   .img2Div-2 {
     display: none;
@@ -4573,7 +4859,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 40px;
-    padding-top: 40px;
+    margin-top: -7px;
   }
 
   .nft-slider2 {
@@ -4587,8 +4873,7 @@ body {
 
 
   .nft-thumb2 {
-    width: 90px;
-    height: 90px;
+    width: 120px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
@@ -4795,6 +5080,9 @@ body {
 }
 
 @media screen and (min-width: 1920px) {
+  .nft-slider2-mob {
+    display: none;
+  }
 
   .img2Div-2 {
     display: none;
@@ -5510,7 +5798,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 40px;
-    padding-top: 40px;
+    margin-top: -7px;
   }
 
   .nft-slider2 {
@@ -5524,8 +5812,7 @@ body {
 
 
   .nft-thumb2 {
-    width: 90px;
-    height: 90px;
+    width: 120px;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
