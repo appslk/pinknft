@@ -24,859 +24,1102 @@ import {
     parseEther,
     webSocket,
 } from "viem";
-import { polygon } from "wagmi/chains";
-import car1 from '../assets/cars/1.png'
-import car2 from '../assets/cars/2.png'
-import car3 from '../assets/cars/3.png'
-import car4 from '../assets/cars/4.png'
-import car5 from '../assets/cars/5.png'
-import car6 from '../assets/cars/6.png'
-import car7 from '../assets/cars/7.png'
-import car8 from '../assets/cars/8.png'
-import car9 from '../assets/cars/9.png'
-import car10 from '../assets/cars/10.png'
-import car11 from '../assets/cars/11.png'
-import car12 from '../assets/cars/12.png'
-import car13 from '../assets/cars/13.png'
-import car14 from '../assets/cars/14.png'
-import car15 from '../assets/cars/15.png'
-import car16 from '../assets/cars/16.png'
-import car17 from '../assets/cars/17.png'
-import car18 from '../assets/cars/18.png'
-import car19 from '../assets/cars/19.png'
-import car20 from '../assets/cars/20.png'
+import { avalanche } from "wagmi/chains";
+import car1 from '../assets/carAccesories/1.jpg'
+import car2 from '../assets/carAccesories/2.jpg'
+import car3 from '../assets/carAccesories/3.jpg'
+import car4 from '../assets/carAccesories/4.jpg'
+import car5 from '../assets/carAccesories/5.jpg'
+import car6 from '../assets/carAccesories/6.jpg'
+import car7 from '../assets/carAccesories/7.jpg'
+import car8 from '../assets/carAccesories/8.jpg'
+import car9 from '../assets/carAccesories/9.jpg'
+import car10 from '../assets/carAccesories/10.jpg'
+import car11 from '../assets/carAccesories/11.jpg'
+import car12 from '../assets/carAccesories/12.jpg'
+import car13 from '../assets/carAccesories/13.jpg'
 import left from '../assets/left-arrow.png'
 import right from '../assets/right-arrow.png'
 import link from '../assets/external-link.png'
 
 
 const ops = () => {
-    window.open("https://opensea.io/collection/pink-nft");
+    window.open("https://opensea.io/collection/pink-nft-car-accessories");
 }
 
 
 let ABI = [
-    {
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            }
-        ],
-        "name": "OperatorNotAllowed",
-        "type": "error"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "bool",
-                "name": "approved",
-                "type": "bool"
-            }
-        ],
-        "name": "ApprovalForAll",
-        "type": "event"
-    },
-    {
-        "inputs": [],
-        "name": "deleteDefaultRoyalty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }
-        ],
-        "name": "freeMint",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            }
-        ],
-        "name": "mint",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "ids",
-                "type": "uint256[]"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "amounts",
-                "type": "uint256[]"
-            },
-            {
-                "internalType": "bytes",
-                "name": "data",
-                "type": "bytes"
-            }
-        ],
-        "name": "mintBatch",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "previousOwner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "newOwner",
-                "type": "address"
-            }
-        ],
-        "name": "OwnershipTransferred",
-        "type": "event"
-    },
-    {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "resetTokenRoyalty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "ids",
-                "type": "uint256[]"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "amounts",
-                "type": "uint256[]"
-            },
-            {
-                "internalType": "bytes",
-                "name": "data",
-                "type": "bytes"
-            }
-        ],
-        "name": "safeBatchTransferFrom",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes",
-                "name": "data",
-                "type": "bytes"
-            }
-        ],
-        "name": "safeTransferFrom",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            },
-            {
-                "internalType": "bool",
-                "name": "approved",
-                "type": "bool"
-            }
-        ],
-        "name": "setApprovalForAll",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "_contractURI",
-                "type": "string"
-            }
-        ],
-        "name": "setContractURI",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_receiver",
-                "type": "address"
-            },
-            {
-                "internalType": "uint96",
-                "name": "_feeNumerator",
-                "type": "uint96"
-            }
-        ],
-        "name": "setDefaultRoyalty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_max_ids",
-                "type": "uint256"
-            }
-        ],
-        "name": "setMax_ids",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_max_per_wallet",
-                "type": "uint256"
-            }
-        ],
-        "name": "setMax_per_wallet",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "cost",
-                "type": "uint256"
-            }
-        ],
-        "name": "setPublicSaleCost",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_receiver",
-                "type": "address"
-            },
-            {
-                "internalType": "uint96",
-                "name": "_royaltyFeesInBips",
-                "type": "uint96"
-            }
-        ],
-        "name": "setRoyaltyInfo",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address",
-                "name": "_receiver",
-                "type": "address"
-            },
-            {
-                "internalType": "uint96",
-                "name": "_feeNumerator",
-                "type": "uint96"
-            }
-        ],
-        "name": "setTokenRoyalty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "newuri",
-                "type": "string"
-            }
-        ],
-        "name": "setURI",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "toggle_free_mint_status",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "toggle_public_mint_status",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256[]",
-                "name": "ids",
-                "type": "uint256[]"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256[]",
-                "name": "values",
-                "type": "uint256[]"
-            }
-        ],
-        "name": "TransferBatch",
-        "type": "event"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "newOwner",
-                "type": "address"
-            }
-        ],
-        "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "value",
-                "type": "uint256"
-            }
-        ],
-        "name": "TransferSingle",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "internalType": "string",
-                "name": "value",
-                "type": "string"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }
-        ],
-        "name": "URI",
-        "type": "event"
-    },
-    {
-        "inputs": [],
-        "name": "withdraw",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address[]",
-                "name": "accounts",
-                "type": "address[]"
-            },
-            {
-                "internalType": "uint256[]",
-                "name": "ids",
-                "type": "uint256[]"
-            }
-        ],
-        "name": "balanceOfBatch",
-        "outputs": [
-            {
-                "internalType": "uint256[]",
-                "name": "",
-                "type": "uint256[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "contractURI",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }
-        ],
-        "name": "exists",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "free_mint_status",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "freeMinted",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            }
-        ],
-        "name": "isApprovedForAll",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "max_ids",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "max_per_wallet",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "name",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "OPERATOR_FILTER_REGISTRY",
-        "outputs": [
-            {
-                "internalType": "contract IOperatorFilterRegistry",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "public_mint_status",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "publicSaleCost",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_salePrice",
-                "type": "uint256"
-            }
-        ],
-        "name": "royaltyInfo",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "bytes4",
-                "name": "interfaceId",
-                "type": "bytes4"
-            }
-        ],
-        "name": "supportsInterface",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "symbol",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }
-        ],
-        "name": "totalSupply",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "uri",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    }
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "recipients",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "airdrop",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_recipient",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			}
+		],
+		"name": "OperatorNotAllowed",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "ApprovalForAll",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "deleteDefaultRoyalty",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "freeMint",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "amounts",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "mintBatch",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "resetTokenRoyalty",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "amounts",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "safeBatchTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "setApprovalForAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_contractURI",
+				"type": "string"
+			}
+		],
+		"name": "setContractURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_receiver",
+				"type": "address"
+			},
+			{
+				"internalType": "uint96",
+				"name": "_feeNumerator",
+				"type": "uint96"
+			}
+		],
+		"name": "setDefaultRoyalty",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_max_ids",
+				"type": "uint256"
+			}
+		],
+		"name": "setMax_ids",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_max_per_wallet",
+				"type": "uint256"
+			}
+		],
+		"name": "setMax_per_wallet",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cost",
+				"type": "uint256"
+			}
+		],
+		"name": "setPublicSaleCost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_receivingWallet",
+				"type": "address"
+			}
+		],
+		"name": "setReceivingWallet",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_receiver",
+				"type": "address"
+			},
+			{
+				"internalType": "uint96",
+				"name": "_royaltyFeesInBips",
+				"type": "uint96"
+			}
+		],
+		"name": "setRoyaltyInfo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_receiver",
+				"type": "address"
+			},
+			{
+				"internalType": "uint96",
+				"name": "_feeNumerator",
+				"type": "uint96"
+			}
+		],
+		"name": "setTokenRoyalty",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "newuri",
+				"type": "string"
+			}
+		],
+		"name": "setURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "toggle_free_mint_status",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "toggle_public_mint_status",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256[]",
+				"name": "values",
+				"type": "uint256[]"
+			}
+		],
+		"name": "TransferBatch",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "TransferSingle",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256[13]",
+				"name": "newPrices",
+				"type": "uint256[13]"
+			}
+		],
+		"name": "updatePrices",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "value",
+				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "URI",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "accounts",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			}
+		],
+		"name": "balanceOfBatch",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "contractURI",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost1",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost10",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost11",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost12",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost13",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost2",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost3",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost4",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost5",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost6",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost7",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost8",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost9",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "exists",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "free_mint_status",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "freeMinted",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllCost",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			}
+		],
+		"name": "isApprovedForAll",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "max_ids",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "max_per_wallet",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "OPERATOR_FILTER_REGISTRY",
+		"outputs": [
+			{
+				"internalType": "contract IOperatorFilterRegistry",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "public_mint_status",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "publicSaleCost",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "receivingWallet",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_salePrice",
+				"type": "uint256"
+			}
+		],
+		"name": "royaltyInfo",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes4",
+				"name": "interfaceId",
+				"type": "bytes4"
+			}
+		],
+		"name": "supportsInterface",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "uri",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
 ];
 
-let address = "0xE024AB5F5158642D823313e39D6f55E305166b31";
+let address = "0x160D709Ed864D2Dce319985241b4Af8e155520e4";
 
 const nftImages = [
     car1,
@@ -891,37 +1134,23 @@ const nftImages = [
     car10,
     car11,
     car12,
-    car13,
-    car14,
-    car15,
-    car16,
-    car17,
-    car18,
-    car19,
-    car20
+    car13
 ];
 
 const nftImagesNames = [
-    "Acura NSX",
-    "Audi R8",
-    "BMW i8",
-    "Chevrolet Camaro",
-    "Chevrolet Silverado",
-    "Dodge Charger",
-    "Dodge RAM 1500 Laramie Longhorn",
-    "Ford Bronco",
-    "Ford Mustang Roush",
-    "Ford Raptor f150 2015",
-    "Ford Raptor f150 2016",
-    "Ford Raptor f150 2018",
-    "Ford Raptor f150 2021",
-    "GMC Sierra",
-    "Honda Ridgeline",
-    "Hummer EV",
-    "Jeep Gladiator",
-    "Mercedes AMGT GT",
-    "Nissan Frontier",
-    "Toyota Tundra TRD Pro"
+    "Coil Spring",
+    "Coilover",
+    "Hood Scoop",
+    "Lightbar",
+    "Nos",
+    "Red and Black Air Intake",
+    "Super Charger 1 & 2",
+    "Suspension Mod1",
+    "Tire Mod1",
+    "Tire Mod2",
+    "Tire Mod3",
+    "Tire",
+    "Turbo"
 ];
 
 
@@ -932,7 +1161,6 @@ export default function MintSlider() {
     const { switchNetwork } = useSwitchNetwork();
     const [_connected, setConnected] = useState(false);
     const { disconnect } = useDisconnect();
-
     const [_totalSupply, settotalSupply] = useState(0)
     const [statusError, setstatusError] = useState(false)
     const [_insufficientFunds, setInsufficientFunds] = useState(false)
@@ -980,26 +1208,26 @@ export default function MintSlider() {
         );
     };
 
-
     const { address: walletAddress } = useAccount({
         async onConnect() {
-            handleConnect();
+            await handleConnect();
+            setConnected(true);
+            console.log("CONNECTED :" + _connected);
+
         },
     });
 
-    const transport = webSocket("wss://polygon-mainnet.infura.io/ws/v3/50597910853247b38793be4ec6b05dc8");
+    const transport = webSocket("wss://pulsechain-rpc.publicnode.com");
 
     const publicClient = createPublicClient({
-        chain: polygon,
+        chain: avalanche,
         transport,
     });
 
     async function handleConnect() {
-        if (chain.id !== 137) {
-            switchNetwork(137);
+        if (chain.id !== 43114) {
+            switchNetwork(43114);
         }
-
-        setConnected(true);
     }
 
     async function disconnectWallet() {
@@ -1017,6 +1245,37 @@ export default function MintSlider() {
             console.log(error);
         }
     }
+
+    const faqItems1 = [
+        {
+            question: "What is the point of pinks racing?",
+            answer: "To build a full garage to fully tricked out automobiles that will be collectible assets because the more that your car is worth the more you have to wager. "
+        },
+        {
+            question: "What is required to play the game?",
+            answer: "The only item required to play. The pinks game is one pinks NFT. "
+        },
+        {
+            question: "How do I mint my NFT?",
+            answer: "Simply connect your crypto wallet to the site, have the necessary amount of Avalanche also know as AVAX in the wallet, hit the mint button, follow the prompts and you will then have NFT in your wallet"
+        },
+        {
+            question: "So what do I do once I have my NFT?",
+            answer: "You go into the game application connect your wallet and your NFT will be in your garage inside of the game. "
+        },
+        {
+            question: "Will I be able to improve my car in the game?",
+            answer: "Yes there will be a shop where you can buy modification parts. Also, there will be modification parts that will be given away for the daily fastest times the weekly fastest times throughout the game."
+        },
+        {
+            question: "What happens when all cars are sold? How do I get to play the game? ",
+            answer: "There's a limited number of 10,000 total cars in this first edition. Until a second edition will come out the only way to get a car once sold out is on the open market. "
+        },
+        {
+            question: "How will disagreements be handled?",
+            answer: "Since all betting in the game will be based on smart contracts that will be agreed-upon in the terms and conditions of the game. There will be no disagreements. "
+        }
+    ];
 
     var contract = {
         address: address,
@@ -1051,8 +1310,7 @@ export default function MintSlider() {
     }, [success]);
 
     const { writeAsync } = useContractWrite({
-        //...contract,
-        functionName: 'mint',
+        ...contract,
         onError(error) {
             if (error.message.includes('balance')) {
                 setstatusError(true)
@@ -1068,7 +1326,7 @@ export default function MintSlider() {
 
     const { refetch: getCost } = useContractRead({
         ...contract,
-        functionName: 'publicSaleCost', args: [0]
+        functionName: 'getAllCost',
     })
 
     const { refetch: getBalance } = useContractRead({
@@ -1121,7 +1379,7 @@ export default function MintSlider() {
 
             var data2 = await getCost();
             //set_cost(Number(data2.data) / 10 ** 4);
-            set_cost(Number(data2.data));
+            set_cost(data2.data);
             console.log("publicSaleCost :" + data2.data);
 
         }
@@ -1162,22 +1420,22 @@ export default function MintSlider() {
         }
     }
 
-    async function mint(contract) {
+    async function mint() {
         try {
 
             setstatusLoading(true)
             setstatusError(false)
 
             var mintCost;
-            mintCost = _cost;
-            mintCost = (mintCost * _howMany).toString();
+            mintCost = Number(_cost[_selectedNFTId]);
+            mintCost = (mintCost * Number(_howMany)).toString();
             console.log("_cost :" + _cost);
             console.log("mintCost :" + mintCost);
             console.log("_selectedNFTId Mint :" + _selectedNFTId);
 
             var res = await writeAsync({
-                ...contract,
-                args: [_selectedNFTId, _howMany],
+                functionName: 'mint',
+                args: [Number(_selectedNFTId), Number(_howMany)],
                 //value: ((mintcost).toString()), ////
                 value: mintCost,
                 gasLimit: '685000'
@@ -1226,50 +1484,54 @@ export default function MintSlider() {
 
     }
 
+
     return (
         <>
             <h2 className="section-title" id="title3">MINT <span style={{ color: "#ff188b" }}>ACCESSORIES</span></h2>
 
             <div className="mint-wrapper">
-                <div className="mint-container2" id="blurEffect">
+                <div className="mint-container2">
                     <div className='carousel'>
                         <button className="arrow left-arrow"><img onClick={handlePrev} src={left} /></button>
                         <div className="nft-slider2">
-                            {nftImages.slice(startIndex, startIndex + itemsPerPage)
+                            {nftImages
+                                .slice(startIndex, startIndex + itemsPerPage)
                                 .concat(nftImages.slice(0, Math.max(0, startIndex + itemsPerPage - totalNFTs)))
                                 .map((img) => {
-                                    const originalIndex = nftImages.indexOf(img) + 1;
+                                    const originalIndex = nftImages.indexOf(img) + 1; // Get correct ID (1-20)
                                     return (
                                         <img
-                                            key={originalIndex}
+                                            key={originalIndex} // Use correct unique ID
                                             src={img}
                                             alt={`NFT ${originalIndex}`}
                                             className={`nft-thumb2 ${selectedNFT === img ? "active2" : ""}`}
-                                            onClick={() => handleSelectNFT(originalIndex, img)}
+                                            onClick={() => handleSelectNFT(originalIndex, img)} // Pass correct ID and image
                                         />
                                     );
                                 })}
+
                         </div>
 
                         <div className="nft-slider2-mob">
-                            {nftImages.slice(startIndex, startIndex + itemsPerPageMob)
+                            {nftImages
+                                .slice(startIndex, startIndex + itemsPerPageMob)
                                 .concat(nftImages.slice(0, Math.max(0, startIndex + itemsPerPageMob - totalNFTs)))
                                 .map((img) => {
-                                    const originalIndex = nftImages.indexOf(img) + 1;
+                                    const originalIndex = nftImages.indexOf(img) + 1; // Get correct ID (1-20)
                                     return (
                                         <img
-                                            key={originalIndex}
+                                            key={originalIndex} // Use correct unique ID
                                             src={img}
                                             alt={`NFT ${originalIndex}`}
                                             className={`nft-thumb2 ${selectedNFT === img ? "active2" : ""}`}
-                                            onClick={() => handleSelectNFT(originalIndex, img)}
+                                            onClick={() => handleSelectNFT(originalIndex, img)} // Pass correct ID and image
                                         />
                                     );
                                 })}
+
                         </div>
                         <button className="arrow right-arrow"><img onClick={handleNext} src={right} /></button>
                     </div>
-
                     <div className="mint-box2">
                         {selectedNFT && (
                             <h2 className="nft-name">
@@ -1278,9 +1540,8 @@ export default function MintSlider() {
                         )}
                         <img src={selectedNFT} alt="Selected NFT" className="selected-nft2" />
 
-                        <div className="Minted">Minted</div>
-                        <p className="total-supply">{_totalSupply} / 10,000</p>
-                        <p className="price">Price per NFT: <span>0.0001 ETH</span></p>
+                        <div className="Minted">Minted</div><p className="total-supply">{Number(_totalSupply)} / 10,000</p>
+                        <p className="price">Price per NFT: <span className='prices'>{(Number(_cost[_selectedNFTId])) / 10 ** 18} AVAX</span></p>
 
                         <div className="counter2">
                             <button onClick={onMinus} className="btn2">−</button>
@@ -1289,27 +1550,26 @@ export default function MintSlider() {
                         </div>
 
                         <p className="total-price2">
-                            Total: <span>{((_howMany * _cost) / 10 ** 18)} ETH</span>
+                            Total: <span className='prices'>{((Number(_howMany) * Number(_cost[_selectedNFTId])) / 10 ** 18)} AVAX</span>
                         </p>
 
-                        <button className={`mint-btn2 ${statusLoading ? "loading2" : ""}`}
-                            onClick={() => { mint(contract) }}
-                            disabled={statusLoading}>
+                        <button
+                            className={`mint-btn2 ${statusLoading ? "loading2" : ""}`}
+                            onClick={mint}
+                            disabled={statusLoading}
+                        >
                             {statusLoading ? "Minting..." : "MINT"}
                         </button>
 
                         <div className='os' onClick={ops}>OPENSEA <img src={link} /></div>
-                    </div>
-                </div>
 
-                {/* Overlay with Coming Soon */}
-                <div className="coming-soon-overlay">
-                    <h1 className='txtcs'>Coming Soon!</h1>
+                    </div>
+
                 </div>
             </div>
 
-
             <div>
+
                 {_insufficientFunds ? (
                     <div id="errorMessage" class="notification error">
                         Insufficient funds!
@@ -1335,7 +1595,7 @@ export default function MintSlider() {
 
                 {success ? (
                     <div id="success-message" class="notification success">
-                        NFT Minted Successfully!
+                        Accessory Minted Successfully!
                         <div class="progress-barS"></div>
                     </div>
                 )
