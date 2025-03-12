@@ -21,7 +21,7 @@ import {
 	parseEther,
 	webSocket,
 } from "viem";
-import { polygon } from "wagmi/chains";
+import { avalanche } from "wagmi/chains";
 
 import '../App.css';
 
@@ -94,7 +94,61 @@ function FAQItem({ question, answer }) {
 
 let ABI = [
 	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "recipients",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "airdrop",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
+		"name": "deleteDefaultRoyalty",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_recipient",
+				"type": "address"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -135,13 +189,6 @@ let ABI = [
 		"type": "event"
 	},
 	{
-		"inputs": [],
-		"name": "deleteDefaultRoyalty",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -150,24 +197,6 @@ let ABI = [
 			}
 		],
 		"name": "freeMint",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "quantity",
-				"type": "uint256"
-			}
-		],
-		"name": "mint",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -402,6 +431,19 @@ let ABI = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_receivingWallet",
+				"type": "address"
+			}
+		],
+		"name": "setReceivingWallet",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "_receiver",
 				"type": "address"
 			},
@@ -554,6 +596,19 @@ let ABI = [
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256[20]",
+				"name": "newPrices",
+				"type": "uint256[20]"
+			}
+		],
+		"name": "updatePrices",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -641,6 +696,266 @@ let ABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "cost1",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost10",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost11",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost12",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost13",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost14",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost15",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost16",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost17",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost18",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost19",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost2",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost20",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost3",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost4",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost5",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost6",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost7",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost8",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cost9",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -686,6 +1001,19 @@ let ABI = [
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllCost",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
 			}
 		],
 		"stateMutability": "view",
@@ -813,6 +1141,19 @@ let ABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "receivingWallet",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -913,7 +1254,7 @@ let ABI = [
 	}
 ];
 
-let address = "0xE024AB5F5158642D823313e39D6f55E305166b31";
+let address = "0x63ECd6f4595B8E6a9e8E919c598846805283db63";
 
 const nftImages = [
 	car1,
@@ -1019,22 +1360,22 @@ const Home = () => {
 	const { address: walletAddress } = useAccount({
 		async onConnect() {
 			await handleConnect();
-			 setConnected(true);
-			 console.log("CONNECTED :" + _connected);
+			setConnected(true);
+			console.log("CONNECTED :" + _connected);
 
 		},
 	});
 
-	const transport = webSocket("wss://polygon-mainnet.infura.io/ws/v3/50597910853247b38793be4ec6b05dc8");
+	const transport = webSocket("wss://pulsechain-rpc.publicnode.com");
 
 	const publicClient = createPublicClient({
-		chain: polygon,
+		chain: avalanche,
 		transport,
 	});
 
 	async function handleConnect() {
-		if (chain.id !== 137) {
-			switchNetwork(137);
+		if (chain.id !== 43114) {
+			switchNetwork(43114);
 		}
 	}
 
@@ -1118,8 +1459,7 @@ const Home = () => {
 	}, [success]);
 
 	const { writeAsync } = useContractWrite({
-		//...contract,
-		functionName: 'mint',
+		...contract,
 		onError(error) {
 			if (error.message.includes('balance')) {
 				setstatusError(true)
@@ -1135,7 +1475,7 @@ const Home = () => {
 
 	const { refetch: getCost } = useContractRead({
 		...contract,
-		functionName: 'publicSaleCost', args: [0]
+		functionName: 'getAllCost',
 	})
 
 	const { refetch: getBalance } = useContractRead({
@@ -1188,7 +1528,7 @@ const Home = () => {
 
 			var data2 = await getCost();
 			//set_cost(Number(data2.data) / 10 ** 4);
-			set_cost(Number(data2.data));
+			set_cost(data2.data);
 			console.log("publicSaleCost :" + data2.data);
 
 		}
@@ -1229,22 +1569,22 @@ const Home = () => {
 		}
 	}
 
-	async function mint(contract) {
+	async function mint() {
 		try {
 
 			setstatusLoading(true)
 			setstatusError(false)
 
 			var mintCost;
-			mintCost = _cost;
-			mintCost = (mintCost * _howMany).toString();
+			mintCost = Number(_cost[_selectedNFTId]);
+			mintCost = (mintCost * Number(_howMany)).toString();
 			console.log("_cost :" + _cost);
 			console.log("mintCost :" + mintCost);
 			console.log("_selectedNFTId Mint :" + _selectedNFTId);
 
 			var res = await writeAsync({
-				...contract,
-				args: [_selectedNFTId, _howMany],
+				functionName: 'mint',
+                args: [Number(_selectedNFTId), Number(_howMany)],
 				//value: ((mintcost).toString()), ////
 				value: mintCost,
 				gasLimit: '685000'
@@ -1380,7 +1720,7 @@ const Home = () => {
 								<img src={selectedNFT} alt="Selected NFT" className="selected-nft2" />
 
 								<div className="Minted">Minted</div><p className="total-supply">{Number(_totalSupply)} / 10,000</p>
-								<p className="price">Price per NFT: <span className='prices'>0.0001 ETH</span></p>
+								<p className="price">Price per NFT: <span className='prices'>{(Number(_cost[_selectedNFTId])) / 10 ** 18} AVAX</span></p>
 
 								<div className="counter2">
 									<button onClick={onMinus} className="btn2">−</button>
@@ -1389,18 +1729,18 @@ const Home = () => {
 								</div>
 
 								<p className="total-price2">
-									Total: <span className='prices'>{((Number(_howMany) * Number(_cost)) / 10 ** 18)} ETH</span>
+									Total: <span className='prices'>{((Number(_howMany) * Number(_cost[_selectedNFTId])) / 10 ** 18)} AVAX</span>
 								</p>
 
 								<button
 									className={`mint-btn2 ${statusLoading ? "loading2" : ""}`}
-									onClick={() => { mint(contract) }}
+									onClick={mint}
 									disabled={statusLoading}
 								>
 									{statusLoading ? "Minting..." : "MINT"}
 								</button>
 
-								<div className='os' onClick={ops}>OPENSEA <img src={link}/></div>
+								<div className='os' onClick={ops}>OPENSEA <img src={link} /></div>
 
 							</div>
 
@@ -1411,42 +1751,44 @@ const Home = () => {
 				{_connected ?
 					<>
 						<MintSlider />
-						<div>
 
-							{_insufficientFunds ? (
-								<div id="errorMessage" class="notification error">
-									Insufficient funds!
-									<div class="progress-barE"></div>
-								</div>
-							)
-								: null}
-
-							{statusError ? (
-								<div id="errorMessage" class="notification error">
-									Sorry, something went wrong
-									<div class="progress-barE"></div>
-								</div>)
-								: null}
-
-							{statusLoading ? (
-								<div id="loadingText" class="notification loading">
-									Minting
-								</div>
-
-							)
-								: null}
-
-							{success ? (
-								<div id="success-message" class="notification success">
-									NFT Minted Successfully!
-									<div class="progress-barS"></div>
-								</div>
-							)
-								: null}
-
-						</div>
 					</>
 					: null}
+
+				<div>
+
+					{_insufficientFunds ? (
+						<div id="errorMessage" class="notification error">
+							Insufficient funds!
+							<div class="progress-barE"></div>
+						</div>
+					)
+						: null}
+
+					{statusError ? (
+						<div id="errorMessage" class="notification error">
+							Sorry, something went wrong
+							<div class="progress-barE"></div>
+						</div>)
+						: null}
+
+					{statusLoading ? (
+						<div id="loadingText" class="notification loading">
+							Minting
+						</div>
+
+					)
+						: null}
+
+					{success ? (
+						<div id="success-message" class="notification success">
+							NFT Minted Successfully!
+							<div class="progress-barS"></div>
+						</div>
+					)
+						: null}
+
+				</div>
 
 				<img className='tyreTrack' src={tyreTrack} />
 
