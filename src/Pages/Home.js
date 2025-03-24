@@ -1254,7 +1254,7 @@ let ABI = [
 	}
 ];
 
-let address = "0x63ECd6f4595B8E6a9e8E919c598846805283db63";
+let address = "0xfb64683479Ad9B2f8b04327997372c33550EfffD";
 
 const nftImages = [
 	car1,
