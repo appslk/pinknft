@@ -1561,7 +1561,7 @@ export default function MintSlider() {
                             {statusLoading ? "Minting..." : "MINT"}
                         </button>
 
-                        <div className='os' onClick={ops}>OPENSEA <img src={link} /></div>
+                        {/*<div className='os' onClick={ops}>OPENSEA <img src={link} /></div>*/}
 
                     </div>
 
