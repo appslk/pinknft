@@ -1652,7 +1652,7 @@ const Home = () => {
 				<h1 className="title"><span style={{ color: "#ff188b" }}>PINK</span> NFT</h1>
 				<h2 className="subtitle">IT’S SHOW TIME....</h2>
 				<p className="description">
-					It’s been an unforgettable experience. But the time has come to close the lid on KnownOrigin as an active platform, and look back on it as a lasting piece of crypto-art history.
+					Pink NFT: The Ultimate Destination for Visionary Investors, Avid Gamers, and Racing Enthusiasts - Experience the Synergy of Blockchain, Motorsports, and Digital Collectibles. The Roar Of Racing Cars And Trucks Lives On—etched in The Blockchain, A Testament To Speed, Innovation, And The Pioneers Who Fueled The Ride
 				</p>
 
 				{_connected ? (
