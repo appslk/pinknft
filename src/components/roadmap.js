@@ -4,7 +4,7 @@ import roadmap from '../assets/roadmap.jpg'
 
 export default function Roadmap() {
     const phases = [
-        { phase: "Phase 01", year: "2003", description: "Developed addition to playing Need for Speed", color: "yellow" },
+        { phase: "Phase 01", year: "2003", description: "Developed addiction to playing Need for Speed", color: "yellow" },
         { phase: "Phase 02", year: "2014", description: "Creation of the NFT", color: "pink" },
         { phase: "Phase 03", year: "2020", description: "First introduction of NFT to the creator of The Pinks", color: "orange" },
         { phase: "Phase 04", year: "2021 - December", description: "First brainstorming of an NFT collection uses, possible way to gamble", color: "green" },
