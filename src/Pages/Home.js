@@ -2015,14 +2015,11 @@ const Home = () => {
 					<h2 className="section-title"><span style={{ color: "#ff188b" }}>IMPORTANT</span> LINKS</h2>
 					<div className='section-sub'>All of the KnownOrigin inventory can be viewed on these marketplaces below, and the four KODA contracts can be viewed on etherscan.</div>
 					<div className="links-grid">
-						<a href="#" className="link">HELP FAQ</a>
-						<a href="#" className="link">PLATFORM</a>
-						<a href="#" className="link">BLOG POSTS</a>
-						<a href="#" className="link">DISCORD</a>
-						<a href="#" className="link">X / TWITTER</a>
-						<a href="#" className="link">LENS PINK NFT</a>
-						<a href="#" className="link">LENS COMMUNITY</a>
-						<a href="#" className="link">LENS SUPPORT</a>
+						<a href="https://www.facebook.com/profile.php?id=100081073956071" className="link">FACEBOOK</a>
+						<a href="https://youtube.com/@pinksnftracing?si=IObvmVTKn1bCYPwZ" className="link">YOUTUBE</a>
+						<a href="https://x.com/pinksracingnft?s=21&t=wD1bGvb7D7aFlT4d2v9tgQ" className="link">X / TWITTER</a>
+						<a href="https://www.instagram.com/pinksracing?igsh=MTd4eWZwOG00eWl3ag%3D%3D&utm_source=qr" className="link">INSTAGRAM</a>
+						<a href="https://discord.gg/aRBbW2CJ" className="link">DISCORD</a>
 					</div>
 				</section>
 
